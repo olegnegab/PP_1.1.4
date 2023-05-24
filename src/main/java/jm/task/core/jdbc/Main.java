@@ -1,29 +1,24 @@
 package jm.task.core.jdbc;
-import jm.task.core.jdbc.dao.UserDao;
-import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
-import jm.task.core.jdbc.util.Util;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
 
+import jm.task.core.jdbc.service.UserServiceImpl;
 
 public class Main {
     public static void main(String[] args) {
-//        Util.connectionBD();
-        UserDao userDao = new UserDaoJDBCImpl();
 
-        userDao.createUsersTable();
 
-        userDao.saveUser("Name1", "LastName1", (byte) 20);
-        userDao.saveUser("Name2", "LastName2", (byte) 25);
-        userDao.saveUser("Name3", "LastName3", (byte) 31);
-        userDao.saveUser("Name4", "LastName4", (byte) 38);
+        UserServiceImpl userService = new UserServiceImpl();
 
-        userDao.removeUserById(1);
-        System.out.println(userDao.getAllUsers().toString());
-        userDao.cleanUsersTable();
-        userDao.dropUsersTable();
+        userService.createUsersTable();
+        userService.saveUser("Dima", "Petrov", (byte) 25);
+        userService.saveUser("Name1", "LastName1", (byte) 20);
+        userService.saveUser("Name2", "LastName2", (byte) 25);
+        userService.saveUser("Name3", "LastName3", (byte) 31);
+        userService.saveUser("Name4", "LastName4", (byte) 38);
+
+        userService.removeUserById(1);
+        userService.cleanUsersTable();
+        System.out.println(userService.getAllUsers().toString());
+        userService.dropUsersTable();
 
 
     }
